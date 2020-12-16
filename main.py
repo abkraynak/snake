@@ -12,11 +12,11 @@ ypos = constants.WIN_HGT/2
 dx = 0
 dy = 0
 
-font = pygame.font.SysFont(None, 50)
-
 def printMessage(msg, color):
-    m = font.render(msg, True, color)
-    dis.blit(m, [constants.WIN_WID/2, constants.WIN_HGT/2])
+    font = pygame.font.SysFont(None, 50)
+    text = font.render(msg, True, color)
+    textRect = text.get_rect(center=(constants.WIN_WID/2, constants.WIN_HGT/2))
+    dis.blit(text, textRect)
 
 while not gameOver:
     for event in pygame.event.get():
