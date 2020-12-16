@@ -3,16 +3,14 @@ import constants
 
 pygame.init()
 dis = pygame.display.set_mode((400, 400))
-
 pygame.display.set_caption("Snake")
 
+clock = pygame.time.Clock()
 gameOver = False
 xpos = 200
 ypos = 200
 dx = 0
 dy = 0
-
-clock = pygame.time.Clock()
 
 while not gameOver:
     for event in pygame.event.get():
@@ -31,6 +29,10 @@ while not gameOver:
             elif event.key == pygame.K_DOWN:
                 dx = 0
                 dy = constants.BOXSIZE
+            elif event.key == pygame.K_q:
+                gameOver = True
+                dx = 0
+                dy = 0
     xpos += dx
     ypos += dy
     dis.fill(constants.BLACK)
