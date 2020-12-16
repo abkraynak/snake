@@ -8,13 +8,21 @@ pygame.display.set_caption("Snake")
 
 blue = (0, 0, 255)
 red = (255, 0, 0)
+white = (255, 255, 255)
+black = (0, 0, 0)
 
-print(constants.BOXSIZE)
-game_over = False
-while not game_over:
+gameOver = False
+xpos = 200
+ypos = 200
+dx = 0
+dy = 0
+
+clock = pygame.time.Clock()
+
+while not gameOver:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            game_over = True
+            gameOver = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 dx = -constants.BOXSIZE
@@ -28,7 +36,11 @@ while not game_over:
             elif event.key == pygame.K_DOWN:
                 dx = 0
                 dy = constants.BOXSIZE
-    pygame.draw.rect(dis, blue, [200, 200, constants.BOXSIZE, constants.BOXSIZE])
+    xpos += dx
+    ypos += dy
+    dis.fill(black)
+    pygame.draw.rect(dis, blue, [xpos, ypos, constants.BOXSIZE, constants.BOXSIZE])
     pygame.display.update()
+    clock.tick(30)
 pygame.quit()
 quit()
