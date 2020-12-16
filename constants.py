@@ -1,7 +1,7 @@
 BOXSIZE = 20
 CLOCK = 20
-WIN_WID = 400
 WIN_HGT = 400
+WIN_WID = 400
 
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)

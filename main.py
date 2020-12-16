@@ -1,4 +1,5 @@
 import pygame
+import time
 import constants
 
 pygame.init()
@@ -10,6 +11,12 @@ xpos = constants.WIN_WID/2
 ypos = constants.WIN_HGT/2
 dx = 0
 dy = 0
+
+font = pygame.font.SysFont(None, 50)
+
+def printMessage(msg, color):
+    m = font.render(msg, True, color)
+    dis.blit(m, [constants.WIN_WID/2, constants.WIN_HGT/2])
 
 while not gameOver:
     for event in pygame.event.get():
@@ -40,5 +47,9 @@ while not gameOver:
     pygame.draw.rect(dis, constants.BLUE, [xpos, ypos, constants.BOXSIZE, constants.BOXSIZE])
     pygame.display.update()
     pygame.time.Clock().tick(constants.CLOCK)
+printMessage("Game Over!", constants.RED)
+pygame.display.update()
+time.sleep(3)
+
 pygame.quit()
 quit()
