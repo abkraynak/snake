@@ -2,13 +2,12 @@ import pygame
 import constants
 
 pygame.init()
-dis = pygame.display.set_mode((400, 400))
+dis = pygame.display.set_mode((constants.WIN_WID, constants.WIN_HGT))
 pygame.display.set_caption("Snake")
 
-clock = pygame.time.Clock()
 gameOver = False
-xpos = 200
-ypos = 200
+xpos = constants.WIN_WID/2
+ypos = constants.WIN_HGT/2
 dx = 0
 dy = 0
 
@@ -35,9 +34,11 @@ while not gameOver:
                 dy = 0
     xpos += dx
     ypos += dy
+    if xpos >= constants.WIN_WID or xpos < 0 or ypos >= constants.WIN_HGT or ypos < 0:
+        gameOver = True
     dis.fill(constants.BLACK)
     pygame.draw.rect(dis, constants.BLUE, [xpos, ypos, constants.BOXSIZE, constants.BOXSIZE])
     pygame.display.update()
-    clock.tick(constants.CLOCK)
+    pygame.time.Clock().tick(constants.CLOCK)
 pygame.quit()
 quit()
