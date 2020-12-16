@@ -6,11 +6,6 @@ dis = pygame.display.set_mode((400, 400))
 
 pygame.display.set_caption("Snake")
 
-blue = (0, 0, 255)
-red = (255, 0, 0)
-white = (255, 255, 255)
-black = (0, 0, 0)
-
 gameOver = False
 xpos = 200
 ypos = 200
@@ -38,9 +33,9 @@ while not gameOver:
                 dy = constants.BOXSIZE
     xpos += dx
     ypos += dy
-    dis.fill(black)
-    pygame.draw.rect(dis, blue, [xpos, ypos, constants.BOXSIZE, constants.BOXSIZE])
+    dis.fill(constants.BLACK)
+    pygame.draw.rect(dis, constants.BLUE, [xpos, ypos, constants.BOXSIZE, constants.BOXSIZE])
     pygame.display.update()
-    clock.tick(30)
+    clock.tick(constants.CLOCK)
 pygame.quit()
 quit()
