@@ -19,8 +19,8 @@ xpos = constants.WIN_WID/2
 ypos = constants.WIN_HGT/2
 dx = 0
 dy = 0
-block_xpos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0)
-block_ypos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0)
+block_ypos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0) * 20.0
+block_xpos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0) * 20.0
 
 while not gameOver:
     if gameClose == True:
@@ -55,6 +55,7 @@ while not gameOver:
         gameOver = True
     dis.fill(constants.BLACK)
     pygame.draw.rect(dis, constants.BLUE, [xpos, ypos, constants.BOXSIZE, constants.BOXSIZE])
+    pygame.draw.rect(dis, constants.RED, [block_xpos, block_ypos, constants.BOXSIZE, constants.BOXSIZE])
     pygame.display.update()
     if xpos == block_xpos and ypos == block_ypos:
         print("Block")
