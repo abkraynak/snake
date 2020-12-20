@@ -1,16 +1,11 @@
 import pygame
 import time
 import constants
+import random
 
 pygame.init()
 dis = pygame.display.set_mode((constants.WIN_WID, constants.WIN_HGT))
 pygame.display.set_caption("Snake")
-
-gameOver = False
-xpos = constants.WIN_WID/2
-ypos = constants.WIN_HGT/2
-dx = 0
-dy = 0
 
 def printMessage(msg, color):
     font = pygame.font.SysFont(None, 50)
@@ -18,7 +13,22 @@ def printMessage(msg, color):
     textRect = text.get_rect(center=(constants.WIN_WID/2, constants.WIN_HGT/2))
     dis.blit(text, textRect)
 
+gameOver = False
+gameClose = False
+xpos = constants.WIN_WID/2
+ypos = constants.WIN_HGT/2
+dx = 0
+dy = 0
+block_xpos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0)
+block_ypos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0)
+
 while not gameOver:
+    if gameClose == True:
+        dis.fill(constants.WHITE)
+        printMessage("Game Over!", constants.RED)
+        pygame.display.update()
+        time.sleep(3)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             gameOver = True
@@ -36,7 +46,7 @@ while not gameOver:
                 dx = 0
                 dy = constants.BOXSIZE
             elif event.key == pygame.K_q:
-                gameOver = True
+                gameClose = True
                 dx = 0
                 dy = 0
     xpos += dx
@@ -46,10 +56,8 @@ while not gameOver:
     dis.fill(constants.BLACK)
     pygame.draw.rect(dis, constants.BLUE, [xpos, ypos, constants.BOXSIZE, constants.BOXSIZE])
     pygame.display.update()
+    if xpos == block_xpos and ypos == block_ypos:
+        print("Block")
     pygame.time.Clock().tick(constants.CLOCK)
-printMessage("Game Over!", constants.RED)
-pygame.display.update()
-time.sleep(3)
-
 pygame.quit()
 quit()
