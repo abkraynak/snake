@@ -7,6 +7,10 @@ pygame.init()
 dis = pygame.display.set_mode((constants.WIN_WID, constants.WIN_HGT))
 pygame.display.set_caption("Snake")
 
+def snake(block, list):
+    for x in list:
+        pygame.draw.rect(dis, constants.BLUE, [x[0], x[1], block, block])
+
 def printMessage(msg, color):
     font = pygame.font.SysFont(None, 50)
     text = font.render(msg, True, color)
@@ -19,6 +23,8 @@ xpos = constants.WIN_WID/2
 ypos = constants.WIN_HGT/2
 dx = 0
 dy = 0
+snakeList = []
+lengthOfSnake = 1
 block_ypos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0) * 20.0
 block_xpos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0) * 20.0
 
@@ -54,8 +60,18 @@ while not gameOver:
     if xpos >= constants.WIN_WID or xpos < 0 or ypos >= constants.WIN_HGT or ypos < 0:
         gameOver = True
     dis.fill(constants.BLACK)
-    pygame.draw.rect(dis, constants.BLUE, [xpos, ypos, constants.BOXSIZE, constants.BOXSIZE])
+
     pygame.draw.rect(dis, constants.RED, [block_xpos, block_ypos, constants.BOXSIZE, constants.BOXSIZE])
+    snakeHead = []
+    snakeHead.append(xpos)
+    snakeHead.append(ypos)
+    snakeList.append(snakeHead)
+    if len(snakeList) > lengthOfSnake:
+        del snakeList[0]
+    for x in snakeList[:-1]:
+        if x == snakeHead:
+            gameClose = True
+    snake(constants.BOXSIZE, snakeList)
     pygame.display.update()
     if xpos == block_xpos and ypos == block_ypos:
         print("Block")
