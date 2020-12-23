@@ -74,7 +74,9 @@ while not gameOver:
     snake(constants.BOXSIZE, snakeList)
     pygame.display.update()
     if xpos == block_xpos and ypos == block_ypos:
-        print("Block")
+        block_ypos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0) * 20.0
+        block_xpos = round(random.randrange(0, constants.WIN_WID - constants.BOXSIZE) / 20.0) * 20.0
+        lengthOfSnake += 1
     pygame.time.Clock().tick(constants.CLOCK)
 pygame.quit()
 quit()
